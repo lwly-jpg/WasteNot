@@ -1,8 +1,29 @@
 import { useState } from "react";
 
 const Home = () => {
+
+  interface Recipe {
+    recipe: {
+      uri: string;
+      label: string;
+    }
+  }
+
   const [ingredientsInput, setIngredientsInput] = useState<string>("");
-  const handleSearch = () => {};
+  const [recipeResults, setRecipeResults] = useState<any>();
+  
+  const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const response = await fetch(`https://wastenot.onrender.com/recipes?ingredients=${ingredientsInput}`)
+
+    if (response.status === 200) {
+      const data = await response.json();
+      setRecipeResults(data.hits);
+    }
+
+    
+  };
 
   
   return (
@@ -20,6 +41,13 @@ const Home = () => {
             <input className="search-bar-field" type="search" value={ingredientsInput} onChange={(event) => setIngredientsInput(event.target.value)}/>
             <button className="search-bar-button">Search</button>
           </form>
+        </div>
+        <div className="recipie-results">
+          {recipeResults &&
+          recipeResults.map((result: Recipe) => (
+            <div className="recipie-card" key={result.recipe.uri}>{result.recipe.label}</div>
+          ))
+          }
         </div>
       </div>
     </>
