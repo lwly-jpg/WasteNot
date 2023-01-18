@@ -6,6 +6,11 @@ const Home = () => {
     recipe: {
       uri: string;
       label: string;
+      images: {
+        SMALL: {
+          url: string;
+        }
+      }
     }
   }
 
@@ -45,7 +50,11 @@ const Home = () => {
         <div className="recipie-results">
           {recipeResults &&
           recipeResults.map((result: Recipe) => (
-            <div className="recipie-card" key={result.recipe.uri}>{result.recipe.label}</div>
+            <div className="recipie-card" key={result.recipe.uri}>
+              <img src={result.recipe.images.SMALL.url} alt={result.recipe.label}/>
+              {result.recipe.label}
+
+            </div>
           ))
           }
         </div>
