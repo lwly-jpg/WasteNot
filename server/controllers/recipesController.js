@@ -2,7 +2,7 @@ const axios = require("axios");
 require("dotenv").config();
 const appId = process.env.APP_ID;
 const appKey = process.env.APP_KEY;
-const edamam = 'https://api.edamam.com/api/recipes/v2'
+const edamam = "https://api.edamam.com/api/recipes/v2";
 
 const searchRecipes = async (req, res) => {
   const ingredients = req.query.ingredients;
@@ -23,15 +23,14 @@ const getRecipe = async (req, res) => {
 
   try {
     const response = await axios.get(url);
-  
+
     res.status(200).json(response.data);
   } catch (error) {
     console.log(error);
   }
-
 };
 
 module.exports = {
   searchRecipes,
-  getRecipe
-}
+  getRecipe,
+};
