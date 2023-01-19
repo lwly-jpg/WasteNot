@@ -58,7 +58,7 @@ const Home = () => {
                 value={ingredientsInput}
                 onChange={(event) => setIngredientsInput(event.target.value)}
               />
-              <button className={styles.search_bar_button}>&#57620;</button>
+              <button className={styles.search_bar_button}>Search</button>
             </form>
           </div>
         </div>
