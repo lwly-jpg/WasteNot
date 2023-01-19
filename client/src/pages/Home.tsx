@@ -15,12 +15,12 @@ const Home = () => {
   }
 
   const [ingredientsInput, setIngredientsInput] = useState<string>("");
-  const [recipeResults, setRecipeResults] = useState<any>();
+  const [recipeResults, setRecipeResults] = useState<Array<Recipe>>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setRecipeResults("");
+    setRecipeResults([]);
     setLoading(true);
 
     const response = await fetch(
@@ -33,6 +33,10 @@ const Home = () => {
       setRecipeResults(data.hits);
     }
   };
+
+  const getRecipeId = (uri: string) => {
+    return uri.replace("http://www.edamam.com/ontologies/edamam.owl#recipe_", "")
+  }
 
   return (
     <>
@@ -62,24 +66,26 @@ const Home = () => {
             </form>
           </div>
         </div>
-        {loading &&
+        {loading && (
           <div className={styles.loading_container}>
-      	    <div className={styles.loading_spin}></div>
+            <div className={styles.loading_spin}></div>
           </div>
-        }
-        {recipeResults && (
+        )}
+        {recipeResults.length > 0 && (
           <>
             <h2 className={styles.results_header}>Your recipes &#8594;</h2>
             <div className={styles.recipe_results}>
               {recipeResults.map((result: Recipe) => (
-                <div className={styles.recipe_card} key={result.recipe.uri}>
-                  <img
-                    className={styles.recipe_image}
-                    src={result.recipe.images.SMALL.url}
-                    alt={result.recipe.label}
-                  />
-                  <h3 className={styles.recipe_label}>{result.recipe.label}</h3>
-                </div>
+                <a href={`/recipe/${getRecipeId(result.recipe.uri)}`}>
+                  <div className={styles.recipe_card} key={result.recipe.uri}>
+                    <img
+                      className={styles.recipe_image}
+                      src={result.recipe.images.SMALL.url}
+                      alt={result.recipe.label}
+                    />
+                    <h3 className={styles.recipe_label}>{result.recipe.label}</h3>
+                  </div>
+                </a>
               ))}
             </div>
           </>
