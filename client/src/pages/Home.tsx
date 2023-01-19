@@ -15,12 +15,12 @@ const Home = () => {
   }
 
   const [ingredientsInput, setIngredientsInput] = useState<string>("");
-  const [recipeResults, setRecipeResults] = useState<any>();
+  const [recipeResults, setRecipeResults] = useState<Array<Recipe>>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setRecipeResults("");
+    setRecipeResults([]);
     setLoading(true);
 
     const response = await fetch(
