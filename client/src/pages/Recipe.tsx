@@ -3,6 +3,12 @@ import styles from "./Recipe.module.css";
 
 const Recipe = () => {
   interface Recipe {
+    label: string;
+      images: {
+        REGULAR: {
+          url: string;
+        };
+      };
     ingredients: [
       ingredient: {
         text: string;
@@ -28,10 +34,17 @@ const Recipe = () => {
     <div className={styles.recipe_page}>
       {recipe &&
       <div className={styles.main}>
-        <h1>Recipe page</h1>
         <div className={styles.top}>
-          <div className={styles.image}>Image Grid</div>
-          <div className={styles.core_info}>Core Info Grid</div>
+          <div className={styles.image}>
+          <img
+            className={styles.image}
+            src={recipe.images.REGULAR.url}
+            alt={recipe.label}
+          />
+          </div>
+          <div className={styles.core_info}>
+            <h1>{recipe.label}</h1>
+          </div>
         </div>
         <div className={styles.bottom}>
           {recipe.ingredients.map(ingredient => (

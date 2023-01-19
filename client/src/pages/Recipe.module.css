@@ -1,14 +1,12 @@
 .main {
-  border: solid 1px red;
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: 100px 100px;
+  grid-template-rows: auto auto;
   justify-content: center;
 }
 
 .top {
-  border: solid 1px blue;
   width: 100vw;
   position: relative;
   left: 50%;
@@ -18,17 +16,24 @@
   background-color: #031e3b;
   color: #f1ffe7;
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
   margin-bottom: 20px;
 }
 
 .image {
-  border: solid 1px orange;
+  margin: 10px;
+  border-radius: 50%;
 }
+
 .core_info {
-  border: solid 1px green;
+  margin: 10px;
+  text-align: center;
 }
 
 .bottom {
-  border: solid 1px violet;
+  padding: 20px;
+  border-radius: 10%;
+  border: solid 5px #258ea6;
 }
