@@ -16,9 +16,12 @@ const Home = () => {
 
   const [ingredientsInput, setIngredientsInput] = useState<string>("");
   const [recipeResults, setRecipeResults] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setRecipeResults("");
+    setLoading(true);
 
     const response = await fetch(
       `https://wastenot.onrender.com/recipes?ingredients=${ingredientsInput}`
@@ -26,6 +29,7 @@ const Home = () => {
 
     if (response.status === 200) {
       const data = await response.json();
+      setLoading(false);
       setRecipeResults(data.hits);
     }
   };
@@ -54,10 +58,15 @@ const Home = () => {
                 value={ingredientsInput}
                 onChange={(event) => setIngredientsInput(event.target.value)}
               />
-              <button className={styles.search_bar_button}>Find Recipes</button>
+              <button className={styles.search_bar_button}>&#57620;</button>
             </form>
           </div>
         </div>
+        {loading &&
+          <div className={styles.loading_container}>
+      	    <div className={styles.loading_spin}></div>
+          </div>
+        }
         {recipeResults && (
           <>
             <h2 className={styles.results_header}>Your recipes &#8594;</h2>
