@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styles from "./Recipe.module.css";
 
 const Recipe = () => {
@@ -20,10 +21,11 @@ const Recipe = () => {
   }
 
   const [recipe, setRecipe] = useState<Recipe>();
+    const { id } = useParams();
 
   useEffect(() => {
     fetch(
-      `https://wastenot.onrender.com/recipes/b05aeaf36129e3f55ab6242dc0ffb3b4`
+      `https://wastenot.onrender.com/recipes/${id}`
     )
       .then((response) => response.json())
       .then((data) => setRecipe(data.recipe));
@@ -49,7 +51,9 @@ const Recipe = () => {
           </div>
           <div className={styles.method}>
             <h2>Method & More Info</h2>
-            <a href={recipe.url} className={styles.info_button}>Visit {recipe.source}</a>
+            <a href={recipe.url} className={styles.info_button}>
+              Visit {recipe.source}
+            </a>
           </div>
         </div>
       )}
