@@ -1,9 +1,21 @@
 .main {
   display: grid;
-  grid-template-rows: auto 150px;
-  gap: 1em;
+  grid-template-rows: auto;
+  grid-gap: 5px;
   align-items: center;
   margin-top: 5%;
+}
+
+.top_fold {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: #44CF6C;
+  color: #F1FFE7;
+  padding-bottom: 35px;
 }
 
 .header {
