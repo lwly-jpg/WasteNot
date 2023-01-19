@@ -35,10 +35,11 @@ const Home = () => {
       <div className={styles.main}>
         <div className={styles.top_fold}>
           <div className={styles.header}>
-            <h1 className={styles.heading}>Random Ingredients? Waste Not...</h1>
+            <h1 className={styles.heading}>Random Ingredients? 
+            <span className={styles.emphasis}>Waste Not...</span></h1>
             <h2 className={styles.subheading}>
-              Discover delicious recipes with your random ingredients and waste
-              less food.
+              Discover <span className={styles.emphasis}> delicious recipes</span> with your random ingredients and <span className={styles.emphasis}> waste
+              less food.</span>
             </h2>
           </div>
           <div className={styles.search}>
@@ -49,7 +50,7 @@ const Home = () => {
                 value={ingredientsInput}
                 onChange={(event) => setIngredientsInput(event.target.value)}
               />
-              <button className={styles.search_bar_button}>Search</button>
+              <button className={styles.search_bar_button}>Find Recipes</button>
             </form>
           </div>
         </div>

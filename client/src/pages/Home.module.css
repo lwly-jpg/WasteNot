@@ -13,23 +13,38 @@
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  background-color: #44CF6C;
+  background-color: #031e3b;
   color: #F1FFE7;
   padding-bottom: 35px;
 }
+
+/* Header */
 
 .header {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  padding: 5px;
+  padding: 10px;
 }
 
 .heading {
   text-align: center;
   font-size: 3em;
-  padding: 2px;
+  font-weight: 400;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading .emphasis {
+  color: #258EA6;
+  background-color: #F1FFE7;
+  font-weight: 700;
+  width: 70%;
+  margin-top: 10px;
+  transform: rotate(-5deg);
 }
 
 .subheading {
@@ -39,6 +54,12 @@
   padding: 2px;
 }
 
+.subheading .emphasis {
+  font-weight: 700;
+}
+
+/* Search */
+
 .search_bar {
   display: flex;
   flex-wrap: wrap;
@@ -46,19 +67,24 @@
   gap: 10px;
 }
 
+.search_bar_field,
+.search_bar_button {
+  height: 3em;
+  border: none;
+  border-radius: 5px;
+  font-family: "PT Serif", sans-serif;
+  font-size: 18px;
+}
+
 .search_bar_field {
   width: 70%;
-  height: 3em;
   padding: 10px;
-  border-radius: 5px;
-  font-size: 16px;
 }
 
 .search_bar_button {
   width: 100px;
-  height: 3em;
-  border-radius: 5px;
-  font-size: 16px;
+  background-color: #258EA6;
+  color: #F1FFE7; 
 }
 
 /* Recipes */
@@ -78,6 +104,7 @@
 }
 .recipe_image {
   border-radius: 10px;
+  border: dotted 1px #258EA6;
 }
 
 .recipe_label {
@@ -85,4 +112,8 @@
   font-weight: normal;
   text-align: center;
   margin: 20px;
+  color: #F1FFE7;
+  background-color: #258EA6;
+  padding: 5%;
+  width: 90%;
 }
