@@ -35,11 +35,15 @@ const Home = () => {
       <div className={styles.main}>
         <div className={styles.top_fold}>
           <div className={styles.header}>
-            <h1 className={styles.heading}>Random Ingredients? 
-            <span className={styles.emphasis}>Waste Not...</span></h1>
+            <h1 className={styles.heading}>
+              Random Ingredients?
+              <span className={styles.emphasis}>Waste Not...</span>
+            </h1>
             <h2 className={styles.subheading}>
-              Discover <span className={styles.emphasis}> delicious recipes</span> with your random ingredients and <span className={styles.emphasis}> waste
-              less food.</span>
+              Discover{" "}
+              <span className={styles.emphasis}> delicious recipes</span> with
+              your random ingredients and{" "}
+              <span className={styles.emphasis}> waste less food.</span>
             </h2>
           </div>
           <div className={styles.search}>
@@ -54,9 +58,11 @@ const Home = () => {
             </form>
           </div>
         </div>
-        <div className={styles.recipe_results}>
-            {recipeResults &&
-              recipeResults.map((result: Recipe) => (
+        {recipeResults && (
+          <>
+            <h2 className={styles.results_header}>Your recipes &#8594;</h2>
+            <div className={styles.recipe_results}>
+              {recipeResults.map((result: Recipe) => (
                 <div className={styles.recipe_card} key={result.recipe.uri}>
                   <img
                     className={styles.recipe_image}
@@ -66,7 +72,9 @@ const Home = () => {
                   <h3 className={styles.recipe_label}>{result.recipe.label}</h3>
                 </div>
               ))}
-        </div>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
