@@ -1,0 +1,34 @@
+.main {
+  border: solid 1px red;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 100px 100px;
+  justify-content: center;
+}
+
+.top {
+  border: solid 1px blue;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: #031e3b;
+  color: #f1ffe7;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.image {
+  border: solid 1px orange;
+}
+.core_info {
+  border: solid 1px green;
+}
+
+.bottom {
+  border: solid 1px violet;
+}
