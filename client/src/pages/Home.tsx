@@ -62,11 +62,11 @@ const Home = () => {
             </form>
           </div>
         </div>
-        {loading &&
+        {loading && (
           <div className={styles.loading_container}>
-      	    <div className={styles.loading_spin}></div>
+            <div className={styles.loading_spin}></div>
           </div>
-        }
+        )}
         {recipeResults && (
           <>
             <h2 className={styles.results_header}>Your recipes &#8594;</h2>
