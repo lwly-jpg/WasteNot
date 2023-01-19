@@ -32,6 +32,12 @@
   margin: 30px;
   text-align: center;
   font-size: 3em;
+  color: #258ea6;
+  background-color: #f1ffe7;
+  font-weight: 700;
+  width: 70%;
+  margin-top: 10px;
+  transform: rotate(-3deg);
 }
 
 .ingredients {

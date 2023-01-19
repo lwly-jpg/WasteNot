@@ -1,5 +1,11 @@
 body {
   font-family: "PT Serif", serif;
-  background-color: #F1FFE7;
+  background-color: #f1ffe7;
 }
 
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+}
