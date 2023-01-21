@@ -3,6 +3,7 @@
   grid-template-rows: auto;
   grid-gap: 5px;
   align-items: center;
+  margin-top: 3em;
 }
 
 .top_fold {
