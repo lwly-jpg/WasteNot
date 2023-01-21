@@ -32,7 +32,13 @@ const logInUser = async (email, password) => {
 
   const user = await client.query(logInSQL, [email])
 
-  if (user.rows.length === 0) {
+  if (user.rowCount === 0) {
+    throw Error('Username or password invalid.');
+  }
+
+  const match = await bcrypt.compare(password, user.rows[0].password);
+  
+  if (!match) {
     throw Error('Username or password invalid.');
   }
 
@@ -40,10 +46,10 @@ const logInUser = async (email, password) => {
 }
 
 const checkUserExists = async (email) => {
-  const emailSQL = "SELECT 1 FROM users WHERE email = $1 LIMIT 1;";
+  const emailSQL = "SELECT * FROM users WHERE email = $1 LIMIT 1;";
   const emailExists = await client.query(emailSQL, [email]);
 
-  if (emailExists) {
+  if (emailExists.rowCount !== 0) {
     throw Error("Email is already in use.");
   }
 }
