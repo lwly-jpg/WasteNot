@@ -11,7 +11,13 @@ const searchRecipes = async (req, res) => {
   try {
     const response = await axios.get(url);
 
-    res.status(200).json(response.data);
+    const requiredData = response.data.hits.map((data) => ({
+      uri: data.recipe.uri,
+      label: data.recipe.label,
+      image: data.recipe.images.SMALL.url,
+    }));
+
+    res.status(200).json(requiredData);
   } catch (error) {
     console.log(error);
   }
