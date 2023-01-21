@@ -18,9 +18,12 @@ const createUser = async (email, password) => {
     throw Error("Email is already in use.");
   }
 
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
   const createSQL =
     "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id;";
-  const user = await client.query(createSQL, [email, password]);
+  const user = await client.query(createSQL, [email, hashedPassword]);
 
   return user;
 };
