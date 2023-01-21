@@ -5,11 +5,7 @@ import styles from "./Recipe.module.css";
 const Recipe = () => {
   interface Recipe {
     label: string;
-    images: {
-      REGULAR: {
-        url: string;
-      };
-    };
+    image: string;
     ingredients: [
       ingredient: {
         text: string;
@@ -21,15 +17,15 @@ const Recipe = () => {
   }
 
   const [recipe, setRecipe] = useState<Recipe>();
-    const { id } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     fetch(
       `https://wastenot.onrender.com/recipes/${id}`
     )
       .then((response) => response.json())
-      .then((data) => setRecipe(data.recipe));
-  }, []);
+      .then((data) => setRecipe(data));
+  }, [id]);
 
   return (
     <div className={styles.recipe_page}>
@@ -38,7 +34,7 @@ const Recipe = () => {
           <div className={styles.top}>
             <img
               className={styles.image}
-              src={recipe.images.REGULAR.url}
+              src={recipe.image}
               alt={recipe.label}
             />
             <h1 className={styles.title}>{recipe.label}</h1>

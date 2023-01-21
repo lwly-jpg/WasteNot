@@ -3,19 +3,13 @@ import styles from "./Home.module.css";
 
 const Home = () => {
   interface Recipe {
-    recipe: {
-      uri: string;
-      label: string;
-      images: {
-        SMALL: {
-          url: string;
-        };
-      };
-    };
+    uri: string;
+    label: string;
+    image: string;
   }
 
   const [ingredientsInput, setIngredientsInput] = useState<string>("");
-  const [recipeResults, setRecipeResults] = useState<Array<Recipe>>([]);
+  const [recipeResults, setRecipeResults] = useState<Array<Recipe>>();
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -30,13 +24,16 @@ const Home = () => {
     if (response.status === 200) {
       const data = await response.json();
       setLoading(false);
-      setRecipeResults(data.hits);
+      setRecipeResults(data);
     }
   };
 
   const getRecipeId = (uri: string) => {
-    return uri.replace("http://www.edamam.com/ontologies/edamam.owl#recipe_", "")
-  }
+    return uri.replace(
+      "http://www.edamam.com/ontologies/edamam.owl#recipe_",
+      ""
+    );
+  };
 
   return (
     <>
@@ -71,19 +68,19 @@ const Home = () => {
             <div className={styles.loading_spin}></div>
           </div>
         )}
-        {recipeResults.length > 0 && (
+        {recipeResults && (
           <>
             <h2 className={styles.results_header}>Your recipes &#8594;</h2>
             <div className={styles.recipe_results}>
-              {recipeResults.map((result: Recipe) => (
-                <a href={`/recipe/${getRecipeId(result.recipe.uri)}`}>
-                  <div className={styles.recipe_card} key={result.recipe.uri}>
+              {recipeResults.map((recipe: Recipe) => (
+                <a href={`/recipe/${getRecipeId(recipe.uri)}`}>
+                  <div className={styles.recipe_card} key={recipe.uri}>
                     <img
                       className={styles.recipe_image}
-                      src={result.recipe.images.SMALL.url}
-                      alt={result.recipe.label}
+                      src={recipe.image}
+                      alt={recipe.label}
                     />
-                    <h3 className={styles.recipe_label}>{result.recipe.label}</h3>
+                    <h3 className={styles.recipe_label}>{recipe.label}</h3>
                   </div>
                 </a>
               ))}
