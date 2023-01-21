@@ -30,7 +30,18 @@ const getRecipe = async (req, res) => {
   try {
     const response = await axios.get(url);
 
-    res.status(200).json(response.data);
+    const requiredData = {
+      label: response.data.recipe.label,
+      image: response.data.recipe.images.REGULAR.url,
+      ingredients: response.data.recipe.ingredients.map((ingredient) => ({
+        text: ingredient.text,
+        foodId: ingredient.foodId,
+      })),
+      url: response.data.recipe.url,
+      source: response.data.recipe.source,
+    };
+
+    res.status(200).json(requiredData);
   } catch (error) {
     console.log(error);
   }
