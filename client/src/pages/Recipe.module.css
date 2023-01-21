@@ -4,6 +4,7 @@
   display: grid;
   grid-template-rows: auto;
   justify-content: center;
+  margin-top: 3em;
 }
 
 .top {
