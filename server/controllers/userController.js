@@ -1,16 +1,17 @@
 const client = require("../database");
 
 const createUser = async (req, res) => {
-  console.log(req.body)
   const { email, password } = req.body;
-  const sql = "INSERT INTO users (email, password) VALUES ($1, $2);"
+  const sql = "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id;"
 
   try {
-    const response = await client.query(
+    const user = await client.query(
       sql, [email, password]
     );
 
-    res.status(200).json(response);
+    const user_id = user.rows[0].id;
+
+    res.status(200).json({email: email, user_id: user_id});
   } catch (error) {
     console.log(error)
   }
