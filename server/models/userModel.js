@@ -11,9 +11,16 @@ const createUser = async (email, password) => {
     throw Error("Email address is invalid.");
   }
 
-  const sql =
+  const emailSQL = "SELECT 1 FROM users WHERE email = $1 LIMIT 1;";
+  const emailExists = await client.query(emailSQL, [email]);
+
+  if (emailExists) {
+    throw Error("Email is already in use.");
+  }
+
+  const createSQL =
     "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id;";
-  const user = await client.query(sql, [email, password]);
+  const user = await client.query(createSQL, [email, password]);
 
   return user;
 };
