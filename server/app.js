@@ -8,10 +8,7 @@ const port = process.env.PORT;
 const app = express();
 
 app.use(cors());
-
-app.get("/", (req, res) => {
-  res.send("Testing if server is up");
-});
+app.use(express.json());
 
 app.use("/recipes", recipeRoutes);
 app.use("/users", userRoutes);
