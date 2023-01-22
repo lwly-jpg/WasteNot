@@ -1,0 +1,11 @@
+.ingredients {
+  padding: 20px;
+  border-radius: 10%;
+  border: solid 2px #258ea6;
+  background-color: #FFFFFF;
+}
+
+.ingredients li {
+  font-size: 18px;
+  line-height: 150%;
+}

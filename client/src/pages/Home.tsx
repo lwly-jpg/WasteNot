@@ -1,4 +1,7 @@
 import { useState } from "react";
+import Header from "../components/Header";
+import RecipeCard from "../components/RecipeCard";
+import Loading from "../components/Loading";
 import styles from "./Home.module.css";
 
 const Home = () => {
@@ -9,7 +12,7 @@ const Home = () => {
   }
 
   const [ingredientsInput, setIngredientsInput] = useState<string>("");
-  const [recipeResults, setRecipeResults] = useState<Array<Recipe>>();
+  const [recipeResults, setRecipeResults] = useState<Array<Recipe>>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -28,33 +31,16 @@ const Home = () => {
     }
   };
 
-  const getRecipeId = (uri: string) => {
-    return uri.replace(
-      "http://www.edamam.com/ontologies/edamam.owl#recipe_",
-      ""
-    );
-  };
-
   return (
     <>
       <div className={styles.main}>
         <div className={styles.top_fold}>
-          <div className={styles.header}>
-            <h1 className={styles.heading}>
-              Random Ingredients?
-              <span className={styles.emphasis}>Waste Not...</span>
-            </h1>
-            <h2 className={styles.subheading}>
-              Discover{" "}
-              <span className={styles.emphasis}> delicious recipes</span> with
-              your random ingredients and{" "}
-              <span className={styles.emphasis}> waste less food.</span>
-            </h2>
-          </div>
+          <Header />
           <div className={styles.search}>
             <form className={styles.search_bar} onSubmit={handleSearch}>
               <input
                 className={styles.search_bar_field}
+                placeholder="rice mushrooms..."
                 type="search"
                 value={ingredientsInput}
                 onChange={(event) => setIngredientsInput(event.target.value)}
@@ -63,26 +49,13 @@ const Home = () => {
             </form>
           </div>
         </div>
-        {loading && (
-          <div className={styles.loading_container}>
-            <div className={styles.loading_spin}></div>
-          </div>
-        )}
-        {recipeResults && (
+        {loading && <Loading />}
+        {recipeResults.length > 0 && (
           <>
             <h2 className={styles.results_header}>Your recipes &#8594;</h2>
             <div className={styles.recipe_results}>
-              {recipeResults.map((recipe: Recipe) => (
-                <a href={`/recipe/${getRecipeId(recipe.uri)}`}>
-                  <div className={styles.recipe_card} key={recipe.uri}>
-                    <img
-                      className={styles.recipe_image}
-                      src={recipe.image}
-                      alt={recipe.label}
-                    />
-                    <h3 className={styles.recipe_label}>{recipe.label}</h3>
-                  </div>
-                </a>
+              {recipeResults.map((recipe) => (
+                <RecipeCard recipe={recipe} key={recipe.uri} />
               ))}
             </div>
           </>
