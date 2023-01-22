@@ -4,13 +4,12 @@ import RecipeCard from "../components/RecipeCard";
 import Loading from "../components/Loading";
 import styles from "./Home.module.css";
 
-interface Recipe {
-  uri: string;
-  label: string;
-  image: string;
-}
-
 const Home = () => {
+  interface Recipe {
+    uri: string;
+    label: string;
+    image: string;
+  }
 
   const [ingredientsInput, setIngredientsInput] = useState<string>("");
   const [recipeResults, setRecipeResults] = useState<Array<Recipe>>([]);
@@ -49,9 +48,7 @@ const Home = () => {
             </form>
           </div>
         </div>
-        {loading && (
-          <Loading />
-        )}
+        {loading && <Loading />}
         {recipeResults.length > 0 && (
           <>
             <h2 className={styles.results_header}>Your recipes &#8594;</h2>
