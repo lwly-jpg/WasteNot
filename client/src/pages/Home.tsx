@@ -40,6 +40,7 @@ const Home = () => {
             <form className={styles.search_bar} onSubmit={handleSearch}>
               <input
                 className={styles.search_bar_field}
+                placeholder="rice mushrooms..."
                 type="search"
                 value={ingredientsInput}
                 onChange={(event) => setIngredientsInput(event.target.value)}
