@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "../components/Header";
 import styles from "./Home.module.css";
 
 const Home = () => {
@@ -39,18 +40,7 @@ const Home = () => {
     <>
       <div className={styles.main}>
         <div className={styles.top_fold}>
-          <div className={styles.header}>
-            <h1 className={styles.heading}>
-              Random Ingredients?
-              <span className={styles.emphasis}>Waste Not...</span>
-            </h1>
-            <h2 className={styles.subheading}>
-              Discover{" "}
-              <span className={styles.emphasis}> delicious recipes</span> with
-              your random ingredients and{" "}
-              <span className={styles.emphasis}> waste less food.</span>
-            </h2>
-          </div>
+          <Header />
           <div className={styles.search}>
             <form className={styles.search_bar} onSubmit={handleSearch}>
               <input
