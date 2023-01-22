@@ -23,27 +23,7 @@ const createUser = async (email, password) => {
   return user;
 };
 
-const logInUser = async (email, password) => {
-  if (!email || !password) {
-    throw Error("Both email and password are required.");
-  }
 
-  const logInSQL = "SELECT * FROM users WHERE email = $1;";
-
-  const user = await client.query(logInSQL, [email])
-
-  if (user.rowCount === 0) {
-    throw Error('Username or password invalid.');
-  }
-
-  const match = await bcrypt.compare(password, user.rows[0].password);
-  
-  if (!match) {
-    throw Error('Username or password invalid.');
-  }
-
-  return user;
-}
 
 const checkUserExists = async (email) => {
   const emailSQL = "SELECT * FROM users WHERE email = $1 LIMIT 1;";
