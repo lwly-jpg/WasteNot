@@ -14,6 +14,7 @@ I had the idea for WasteNot because I **love food** and **hate waste**.
 In my first iteration of WasteNot, users can:
 - Search for recipes based on any number of ingredient inputs
 - See a full list of ingredients for a recipe by clicking on it
+- See even more information about a recipe via its original source
 
 ## V1 Screenshots
 <img src="./client/public/screenshots/v1-waste-not-desktop-home.png" width="500" alt="WasteNot desktop">
