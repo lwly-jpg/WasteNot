@@ -60,30 +60,3 @@
   gap: 20px;
   overflow-x: auto;
 }
-
-/* Loading */
-
-.loading_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
-}
-
-.loading_spin {
-  width: 50px;
-  height: 50px;
-  border: 5px solid;
-  border-color: #258ea6 transparent #258ea6 transparent;
-  border-radius: 50%;
-  animation: spin-anim 1.5s linear infinite;
-}
-
-@keyframes spin-anim {
-  0% {
-      transform: rotate(0deg);
-  }
-  100% {
-      transform: rotate(360deg);
-  }
-}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import RecipeCard from "../components/RecipeCard";
+import Loading from "../components/Loading";
 import styles from "./Home.module.css";
 
 interface Recipe {
@@ -12,7 +13,7 @@ interface Recipe {
 const Home = () => {
 
   const [ingredientsInput, setIngredientsInput] = useState<string>("");
-  const [recipeResults, setRecipeResults] = useState<Array<Recipe>>();
+  const [recipeResults, setRecipeResults] = useState<Array<Recipe>>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -49,11 +50,9 @@ const Home = () => {
           </div>
         </div>
         {loading && (
-          <div className={styles.loading_container}>
-            <div className={styles.loading_spin}></div>
-          </div>
+          <Loading />
         )}
-        {recipeResults && (
+        {recipeResults.length > 0 && (
           <>
             <h2 className={styles.results_header}>Your recipes &#8594;</h2>
             <div className={styles.recipe_results}>
