@@ -1,13 +1,15 @@
 import { useState } from "react";
 import Header from "../components/Header";
+import RecipeCard from "../components/RecipeCard";
 import styles from "./Home.module.css";
 
+interface Recipe {
+  uri: string;
+  label: string;
+  image: string;
+}
+
 const Home = () => {
-  interface Recipe {
-    uri: string;
-    label: string;
-    image: string;
-  }
 
   const [ingredientsInput, setIngredientsInput] = useState<string>("");
   const [recipeResults, setRecipeResults] = useState<Array<Recipe>>();
@@ -27,13 +29,6 @@ const Home = () => {
       setLoading(false);
       setRecipeResults(data);
     }
-  };
-
-  const getRecipeId = (uri: string) => {
-    return uri.replace(
-      "http://www.edamam.com/ontologies/edamam.owl#recipe_",
-      ""
-    );
   };
 
   return (
@@ -62,17 +57,8 @@ const Home = () => {
           <>
             <h2 className={styles.results_header}>Your recipes &#8594;</h2>
             <div className={styles.recipe_results}>
-              {recipeResults.map((recipe: Recipe) => (
-                <a href={`/recipe/${getRecipeId(recipe.uri)}`}>
-                  <div className={styles.recipe_card} key={recipe.uri}>
-                    <img
-                      className={styles.recipe_image}
-                      src={recipe.image}
-                      alt={recipe.label}
-                    />
-                    <h3 className={styles.recipe_label}>{recipe.label}</h3>
-                  </div>
-                </a>
+              {recipeResults.map((recipe) => (
+                <RecipeCard recipe={recipe} key={recipe.uri} />
               ))}
             </div>
           </>
