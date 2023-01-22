@@ -27,7 +27,7 @@ const Recipe = () => {
   }, [id]);
 
   return (
-    <div className={styles.recipe_page}>
+    <div>
       {recipe && (
         <div className={styles.main}>
           <div className={styles.top}>
